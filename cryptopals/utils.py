@@ -2,6 +2,7 @@ import typing
 import base64
 import itertools
 
+
 def force_bytes(s: typing.Union[str, bytes]):
     """Forces an input to bytes"""
 
@@ -17,7 +18,9 @@ def force_bytes(s: typing.Union[str, bytes]):
 def b64encode(s: typing.Union[str, bytes], urlsafe: bool = True) -> str:
     """Base64 encodes a string or bytes object"""
     inpt = force_bytes(s)
-    return (base64.urlsafe_b64encode(inpt) if urlsafe else base64.b64encode(inpt)).decode("utf-8")
+    return (
+        base64.urlsafe_b64encode(inpt) if urlsafe else base64.b64encode(inpt)
+    ).decode("utf-8")
 
 
 def static_xor(x: bytes, y: bytes):
@@ -25,7 +28,7 @@ def static_xor(x: bytes, y: bytes):
 
 
 def string_xor(x: bytes, key):
-    return static_xor(x, itertools.cycle((key, )))
+    return static_xor(x, itertools.cycle((key,)))
 
 
 def score_string(s: str):
